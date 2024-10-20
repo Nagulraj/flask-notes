@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ current_user.email }}!</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <h2>Your Notes</h2>
+    <a href="{{ url_for('add_note') }}">Add New Note</a>
+    <ul>
+        {% for note in notes %}
+            <li>
+                <strong>{{ note.title }}</strong>
+                <p>{{ note.content }}</p>
+                {% if note.file_name %}
+                    <a href="{{ url_for('static', filename='uploads/' ~ note.file_name) }}">Download file</a>
+                {% endif %}
+                <br>
+                <a href="{{ url_for('update_note', id=note.id) }}">Edit</a>
+                <a href="{{ url_for('delete_note', id=note.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
