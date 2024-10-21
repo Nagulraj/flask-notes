@@ -1,77 +1,27 @@
-/* General body styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Global Styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: #333;
 }
 
-/* Container for the notes */
-.container {
-    width: 80%;
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f4f4f4;
 }
 
-/* Header styling */
-h1 {
-    text-align: center;
-    color: #4CAF50;
-}
-
-/* Styling for note list */
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
+h1, h2 {
+    color: #2c3e50;
     margin-bottom: 20px;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
 }
 
-/* Form styling */
-form {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin: 0 auto;
-}
-
-form label {
-    margin: 10px 0 5px;
-}
-
-form input[type="text"],
-form textarea,
-form input[type="file"] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-form button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
-/* Links styling */
 a {
-    color: #4CAF50;
+    color: #3498db;
     text-decoration: none;
 }
 
@@ -79,31 +29,129 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Flash message styling */
-.flash {
-    background-color: #4CAF50;
-    color: white;
+/* Form Styles */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    text-align: center;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
     border-radius: 4px;
 }
 
-/* Buttons */
-.button {
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: white;
+textarea {
+    height: 150px;
+}
+
+button, .button {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
     border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover {
+    background-color: #2980b9;
     text-decoration: none;
 }
 
-.button:hover {
-    background-color: #45a049;
+/* Note List Styles */
+ul {
+    list-style-type: none;
 }
 
-/* File upload */
-input[type="file"] {
-    padding: 5px;
-    background-color: #f9f9f9;
+li {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+li strong {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+li p {
+    margin-bottom: 10px;
+}
+
+li a {
+    margin-right: 10px;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        font-size: 16px; /* Prevents zoom on focus in iOS */
+    }
+}
+
+/* Accessibility */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; /* added line */
+}
+
+/* Flash Messages */
+.flash {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.flash-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
 }

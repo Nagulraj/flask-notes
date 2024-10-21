@@ -2,27 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Notes - Note-Taking App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Welcome, {{ current_user.email }}!</h1>
-    <a href="{{ url_for('logout') }}">Logout</a>
-    <h2>Your Notes</h2>
-    <a href="{{ url_for('add_note') }}">Add New Note</a>
-    <ul>
-        {% for note in notes %}
-            <li>
-                <strong>{{ note.title }}</strong>
-                <p>{{ note.content }}</p>
-                {% if note.file_name %}
-                    <a href="{{ url_for('static', filename='uploads/' ~ note.file_name) }}">Download file</a>
-                {% endif %}
-                <br>
-                <a href="{{ url_for('update_note', id=note.id) }}">Edit</a>
-                <a href="{{ url_for('delete_note', id=note.id) }}">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>Welcome, {{ current_user.username }}!</h1>
+        <nav>
+            <a href="{{ url_for('add_note') }}" class="button">Add New Note</a>
+            <a href="{{ url_for('logout') }}" class="button">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h2>Your Notes</h2>
+
+        {% if notes %}
+            <ul class="note-list">
+                {% for note in notes %}
+                    <li>
+                        <article class="note">
+                            <h3>{{ note.title }}</h3>
+                            <p>{{ note.content | truncate(100) }}</p>
+                            {% if note.file_name %}
+                                <a href="{{ url_for('static', filename='uploads/' ~ note.file_name) }}" class="button">Download file</a>
+                            {% endif %}
+                            <div class="note-actions">
+                                <a href="{{ url_for('update_note', id=note.id) }}" class="button">Edit</a>
+                                <form action="{{ url_for('delete_note', id=note.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this note?');">Delete</button>
+                                </form>
+                            </div>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You don't have any notes yet. Click "Add New Note" to get started!</p>
+        {% endif %}
+    </main>
+
+   
 </body>
 </html>

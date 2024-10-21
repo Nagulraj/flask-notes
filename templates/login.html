@@ -2,20 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Note-Taking App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="POST">
-        <label>Email: </label>
-        <input type="email" name="email" required><br><br>
+    <main class="container">
+        <h1 class="text-center">Login to Your Account</h1>
 
-        <label>Password: </label>
-        <input type="password" name="password" required><br><br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
-        <button type="submit">Login</button>
-    </form>
-    <a href="{{ url_for('register') }}">Don't have an account? Register here</a>
+        <form method="POST" action="{{ url_for('login') }}" class="mt-20">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required aria-required="true">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required aria-required="true">
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        <p class="text-center mt-20">
+            Don't have an account? <a href="{{ url_for('register') }}">Register here</a>
+        </p>
+    </main>
+
+    <script>
+        // Simple client-side validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            var email = document.getElementById('email').value.trim();
+            var password = document.getElementById('password').value;
+
+            if (email === '' || password === '') {
+                e.preventDefault();
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
 </body>
 </html>
