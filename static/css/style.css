@@ -112,6 +112,10 @@ li a {
     margin-top: 20px;
 }
 
+.downloadBtn{
+    margin-bottom: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     body {

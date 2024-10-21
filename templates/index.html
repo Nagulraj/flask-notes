@@ -36,7 +36,7 @@
                             <h3>{{ note.title }}</h3>
                             <p>{{ note.content | truncate(100) }}</p>
                             {% if note.file_name %}
-                                <a href="{{ url_for('static', filename='uploads/' ~ note.file_name) }}" class="button">Download file</a>
+                                <a href="{{ url_for('static', filename='uploads/' ~ note.file_name) }}" class="button downloadBtn">Download file</a>
                             {% endif %}
                             <div class="note-actions">
                                 <a href="{{ url_for('update_note', id=note.id) }}" class="button">Edit</a>
