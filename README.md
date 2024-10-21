@@ -4,23 +4,23 @@
 
 ```Bash
 git clone https://github.com/Nagulraj/flask-notes
-
-2. Create a virtual environment:
+```
+# Create a virtual environment:
 
 ```Bash
 python -m venv venv
 source venv/bin/activate
+```
+# Install dependencies:
 
-3. Install dependencies:
-
-Bash
+```Bash
 pip install -r requirements.txt
+```
+# Run the application:
 
-4. Run the application:
-
-Bash
+```Bash
 python app.py
-
-6. Access the application:
+```
+# Access the application:
 
 Open your web browser and go to http://127.0.0.1:5000 to access the application locally.
